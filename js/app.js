@@ -12,6 +12,7 @@ var operacion;
 var Calculadora = {
   init: function(){
   //variables
+
   var resultado = document.getElementById('display');
   var reset = document.getElementById('on');
   var suma = document.getElementById('mas');
@@ -33,38 +34,71 @@ var Calculadora = {
   var sign = document.getElementById('sign');
   var raiz = document.getElementById('raiz');
 
+
+
   //Eventos de click
+  //boton[0].onclick = function(){alert("Finaly!");};
+function reducir(e){
+  alert(e);
+  e.style="width:200";
+  e.style="height:200";
+}
+
+function val_inicial(num){
+  if(num == "0")
+    return "";
+  else
+    return num;
+}
+
+
+
     uno.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "1";
     }
     dos.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "2";
     }
     tres.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "3";
     }
     cuatro.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "4";
     }
     cinco.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "5";
     }
     seis.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "6";
     }
     siete.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "7";
     }
     ocho.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "8";
     }
     nueve.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "9";
     }
     cero.onclick = function(e){
+        resultado.textContent = val_inicial(resultado.textContent);
         resultado.textContent = resultado.textContent  + "0";
     }
     punto.onclick = function(e){
+      var con_punt = 0;
+      for(i=0; i<resultado.textContent.length; i++)
+         if(resultado.textContent.charAt(i)== ".")
+            con_punt++;
+      if(con_punt == 0)
         resultado.textContent = resultado.textContent  + ".";
     }
     reset.onclick = function(e){
@@ -99,11 +133,31 @@ var Calculadora = {
       resultado.textContent = "";
     }
     function resetear(){
-      resultado.textContent = "";
+      resultado.textContent = "0";
       operandoa = 0;
       operandob = 0;
       operacion = "";
     }
+
+    function resolver(){
+      var res = 0;
+      switch(operacion){
+        case "+":
+          res = parseFloat(operandoa) + parseFloat(operandob);
+          break;
+        case "-":
+            res = parseFloat(operandoa) - parseFloat(operandob);
+            break;
+        case "*":
+          res = parseFloat(operandoa) * parseFloat(operandob);
+          break;
+        case "/":
+          res = parseFloat(operandoa) / parseFloat(operandob);
+          break;
+      }
+      resetear();
+      resultado.textContent = res;
+    }    
 },
   listenCalcClick: function(){
     var self = document.getElementByClassName("tecla");
